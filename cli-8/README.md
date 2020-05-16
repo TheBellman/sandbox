@@ -1,5 +1,7 @@
 # cli-8
 
+![Java CI with Maven](https://github.com/TheBellman/sandbox/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
+
 This project provides a command-line Java application as a single "shaded" JAR, using Maven for
 construction, and a variety of other tools:
 
