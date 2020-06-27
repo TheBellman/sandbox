@@ -23,7 +23,7 @@ This project assumes that:
   - you are executing with Java 12.0.2 or later.
 
 ## Building and Testing
-To build the executable JAR:
+To build and test the executable JAR:
 
 ```
 $ git clone git@github.com:TheBellman/sandbox.git
@@ -46,6 +46,12 @@ after a few seconds you should see similar to
 [INFO] Finished at: 2020-06-27T11:48:54+01:00
 [INFO] ------------------------------------------------------------------------
 ```
+
+If the application is running (see below), then you can use `curl` for example to test various end points:
+
+ - `curl localhost:8080/api`
+ - `curl localhost:8080/api/version`
+ - `curl --data '{"message":"foo"}' --header "Content-Type: application/json" localhost:8080/api/echo`
 
 ## Usage
 After building, you should be immediately able to execute the JAR:
@@ -129,11 +135,9 @@ context is working.
 **YOU ARE HERE**
 
 ToDo:
- - consuming and producing JSON via REST
- - getting runtime properties from various places
- - maven profiles related to spring profiles
  - in-memory h2 database
  - integration testing with database
+ - maven profiles related to spring profiles
 
 ## License
 Copyright 2020 Little Dog Digital

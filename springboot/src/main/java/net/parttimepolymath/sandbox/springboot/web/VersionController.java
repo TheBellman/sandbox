@@ -1,6 +1,5 @@
 package net.parttimepolymath.sandbox.springboot.web;
 
-import lombok.extern.slf4j.Slf4j;
 import net.parttimepolymath.sandbox.springboot.configuration.Version;
 import net.parttimepolymath.sandbox.springboot.model.VersionResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2020-06-27
  */
 @RestController
-@Slf4j
 @RequestMapping("/api")
 public class VersionController {
 
@@ -28,7 +26,6 @@ public class VersionController {
 
     @RequestMapping(value = {"/version", ""}, method = RequestMethod.GET)
     public VersionResponse getVersion() {
-        log.info("/version called");
         return new VersionResponse(version);
     }
 }

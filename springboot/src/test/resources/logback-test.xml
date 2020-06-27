@@ -14,7 +14,10 @@
 
     <logger name="org.springframework" level="OFF"/>
 
-    <root level="info">
+    <logger name="org.springframework.web.filter.CommonsRequestLoggingFilter" level="DEBUG" addivity="false"
+            appender="console"/>
+
+    <root level="INFO">
         <appender-ref ref="console"/>
     </root>
 

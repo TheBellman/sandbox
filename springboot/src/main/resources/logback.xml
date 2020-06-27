@@ -7,8 +7,6 @@
         </encoder>
     </appender>
 
-    <logger name="org.springframework" level="INFO"/>
-
     <root level="info">
         <appender-ref ref="console" />
     </root>

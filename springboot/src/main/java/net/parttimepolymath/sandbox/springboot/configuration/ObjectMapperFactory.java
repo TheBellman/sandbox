@@ -27,9 +27,12 @@ public class ObjectMapperFactory {
                 if (instance == null) {
                     ObjectMapper mapper = new ObjectMapper();
                     mapper.disable(SerializationFeature.INDENT_OUTPUT);
-                    mapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
-                    mapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
                     mapper.setSerializationInclusion(JsonInclude.Include.ALWAYS);
+
+                    // setting these on ensures that malformed JSON requests are rejected with a 400 error
+                    mapper.enable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
+                    mapper.enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+
                     instance = mapper;
                 }
             }
