@@ -1,0 +1,6 @@
+
+======================================================================
+| @project.name@ - @project.artifactId@:@project.version@
+| built   : @dev.build.timestamp@
+| profile : @profile.id@
+======================================================================

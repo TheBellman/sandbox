@@ -8,3 +8,4 @@ the future translate the Java 8 materials to Java 11 or later.
 You can find the following in here:
 
   - cli-8: A Java 8 Maven project that builds a stand-alone executable JAR that does not much, accompanied by tests.
+  - springboot: a Java 12 project that builds a dummy HTTP API, along with tests, to hold various snippets of Spring Boot fragments

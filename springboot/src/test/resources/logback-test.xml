@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration>
+
+    <!--
+        logback-test.xml is used in place of logback.xml if present. This allows a different configuration
+        for logging during testing. See http://logback.qos.ch/manual/configuration.html
+    -->
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p [%t] %c: %m%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="OFF"/>
+
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+
+</configuration>
