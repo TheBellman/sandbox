@@ -48,5 +48,4 @@ class VersionTest {
         assertNotNull(instance.getProfile());
         assertNotEquals(UNKNOWN, instance.getProfile());
     }
-
 }

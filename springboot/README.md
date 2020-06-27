@@ -55,15 +55,30 @@ java -jar target/springboot-1.0-SNAPSHOT.jar
 
 ======================================================================
 | springboot - springboot:1.0-SNAPSHOT
-| built   : 2020-06-27T11:11:44Z
+| built   : 2020-06-27T17:46:30Z
 | profile : development
 ======================================================================
 
-2020-06-27 12:11:57 INFO  [main] net.parttimepolymath.sandbox.springboot.App: Starting App v1.0-SNAPSHOT on Rozencrantz.local with PID 4540 (/Users/robert/Projects/Java/sandbox/springboot/target/springboot-1.0-SNAPSHOT.jar started by robert in /Users/robert/Projects/Java/sandbox/springboot)
-2020-06-27 12:11:57 INFO  [main] net.parttimepolymath.sandbox.springboot.App: The following profiles are active: development
-2020-06-27 12:11:57 INFO  [main] net.parttimepolymath.sandbox.springboot.VersionConsumer: Version details : Version(name=springboot, version=1.0-SNAPSHOT, build=2020-06-27T11:11:44Z, profile=development)
-2020-06-27 12:11:57 INFO  [main] net.parttimepolymath.sandbox.springboot.App: Started App in 0.901 seconds (JVM running for 1.382)
+2020-06-27 18:46:56 INFO  [main] net.parttimepolymath.sandbox.springboot.App: Starting App v1.0-SNAPSHOT on Rozencrantz.local with PID 7323 (/Users/robert/Projects/Java/sandbox/springboot/target/springboot-1.0-SNAPSHOT.jar started by robert in /Users/robert/Projects/Java/sandbox/springboot)
+2020-06-27 18:46:56 INFO  [main] net.parttimepolymath.sandbox.springboot.App: The following profiles are active: development
+2020-06-27 18:46:57 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat initialized with port(s): 8081 (http)
+2020-06-27 18:46:57 INFO  [main] org.apache.coyote.http11.Http11NioProtocol: Initializing ProtocolHandler ["http-nio-8081"]
+2020-06-27 18:46:57 INFO  [main] org.apache.catalina.core.StandardService: Starting service [Tomcat]
+2020-06-27 18:46:57 INFO  [main] org.apache.catalina.core.StandardEngine: Starting Servlet engine: [Apache Tomcat/9.0.36]
+2020-06-27 18:46:57 INFO  [main] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/]: Initializing Spring embedded WebApplicationContext
+2020-06-27 18:46:57 INFO  [main] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext: Root WebApplicationContext: initialization completed in 1030 ms
+2020-06-27 18:46:57 INFO  [main] net.parttimepolymath.sandbox.springboot.VersionConsumer: Version details : Version(name=springboot, version=1.0-SNAPSHOT, build=2020-06-27T17:46:30Z, profile=development)
+2020-06-27 18:46:57 INFO  [main] org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor: Initializing ExecutorService 'applicationTaskExecutor'
+2020-06-27 18:46:58 INFO  [main] org.apache.coyote.http11.Http11NioProtocol: Starting ProtocolHandler ["http-nio-8081"]
+2020-06-27 18:46:58 INFO  [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer: Tomcat started on port(s): 8081 (http) with context path ''
+2020-06-27 18:46:58 INFO  [main] net.parttimepolymath.sandbox.springboot.App: Started App in 1.848 seconds (JVM running for 2.343)
 ```
+
+There are several different ways to start the application - note injection of `server.port` to override the default 8080
+
+ - `java -jar target/springboot-1.0-SNAPSHOT.jar`
+ - `java -jar -Dserver.port=8181 target/springboot-1.0-SNAPSHOT.jar`
+ - `mvn spring-boot:run`
 
 ## What you can see
 I'm not a big fan of Spring, although Spring Boot makes me a little happier. I will concede though that now 
@@ -83,7 +98,9 @@ The `pom.xml` is largely as defined by [Spring Initializer](https://start.spring
 
  - `spring-boot-starter-validation` - allows validation of properties
  - `spring-boot-configuration-processor` - exposes `Configuration` definitions to the IDE
+ - `spring-boot-starter-web` - allows for REST API
  - `lombok`
+ - `jackson-databind` - this gives us `jackson-core` and `jackson-annotations` at the same time.
 
 It's also got two different profiles defined, which will come into play during bundling for release. By default the
 "development" profile is active for all general testing, and the "release" profile should be used for the release artifact.
@@ -111,28 +128,12 @@ context is working.
 
 **YOU ARE HERE**
 
-Want to show
+ToDo:
  - consuming and producing JSON via REST
  - getting runtime properties from various places
- - tying together maven version information and properties
  - maven profiles related to spring profiles
  - in-memory h2 database
  - integration testing with database
-
-
-Some of the things shown in here:
-
- - use of `assert` in Java code
- - use of Junit 5 assertions
- - use of Java 8 streams and lambda expressions
- - use of the Maven shade plugin
- - reading properties from the the classpath
- - reading files from the class path
- - configuring and using Log4J via SLF4J
- - thread safe construction of a Jackson ObjectMapper
- - serialisation/deserialisation of Java 8 Instant
- - command line parsing with [Commons CLI](https://commons.apache.org/proper/commons-cli/)
-
 
 ## License
 Copyright 2020 Little Dog Digital
