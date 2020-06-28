@@ -3,6 +3,7 @@ package net.parttimepolymath.sandbox.springboot.service;
 import net.parttimepolymath.sandbox.springboot.model.EchoRequest;
 import net.parttimepolymath.sandbox.springboot.model.EchoResponse;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -28,4 +29,10 @@ public interface EchoService {
      * @return a non-null but possibly empty response.
      */
     Optional<EchoResponse> fetch(UUID id);
+
+    /**
+     * ask for all previous echo responses to be returned.
+     * @return a non-null but possibly empty list
+     */
+    List<EchoResponse> fetch();
 }

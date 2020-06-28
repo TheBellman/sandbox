@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -47,5 +49,22 @@ class StoringEchoServiceTest {
     void testFetchBad() {
         Optional<EchoResponse> result = instance.fetch(UUID.randomUUID());
         assertFalse(result.isPresent());
+    }
+
+    @Test
+    void testFetchAll() {
+        List<EchoResponse> result = instance.fetch();
+        assertNotNull(result);
+        assertFalse(result.isEmpty());
+        assertEquals(22, result.size());
+
+        Arrays.asList("a", "b", "c", "d", "e", "f").forEach(msg -> {
+            EchoResponse response = instance.echo(new EchoRequest(msg));
+            assertNotNull(response);
+        });
+
+        List<EchoResponse> result2 = instance.fetch();
+        assertNotNull(result2);
+        assertEquals(6, result2.size() - result.size());
     }
 }

@@ -7,6 +7,7 @@ import net.parttimepolymath.sandbox.springboot.service.EchoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -33,4 +34,10 @@ public class EchoController {
     public EchoResponse fetch(@PathVariable(value = "id") String id) {
         return service.fetch(UUID.fromString(id)).orElseThrow(() -> new ResourceNotFoundException("Message", "id", id) );
     }
+
+    @RequestMapping(value = "/echo", method = RequestMethod.GET)
+    public List<EchoResponse> fetch() {
+        return service.fetch();
+    }
+
 }

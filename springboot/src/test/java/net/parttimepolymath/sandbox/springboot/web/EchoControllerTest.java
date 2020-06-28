@@ -13,6 +13,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Objects;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -99,5 +100,17 @@ class EchoControllerTest {
         );
 
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, exception.getStatusCode());
+    }
+
+    @Test
+    void testFetchAll() {
+        ResponseEntity<EchoResponse[]> response = restTemplate.getForEntity(baseUrl + "/echo", EchoResponse[].class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertTrue(Objects.requireNonNull(response.getBody()).length>0);
+
+        for (int i=0 ; i<response.getBody().length; i++) {
+            EchoResponse er = response.getBody()[i];
+            assertNotNull(er);
+        }
     }
 }

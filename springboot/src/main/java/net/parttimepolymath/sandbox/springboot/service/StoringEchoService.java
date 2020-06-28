@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * instance of the echo service that persists messages in the database.
@@ -47,6 +49,11 @@ public class StoringEchoService implements EchoService {
         }
 
         return repository.findById(id.toString()).map(messages -> messages.toResponse());
+    }
+
+    @Override
+    public List<EchoResponse> fetch() {
+        return repository.findAll().stream().map(msg -> new EchoResponse(msg.getId(), msg.getMessage())).collect(Collectors.toList());
     }
 
 }

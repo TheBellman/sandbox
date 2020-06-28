@@ -5,10 +5,7 @@ import net.parttimepolymath.sandbox.springboot.model.EchoResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.TreeMap;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * implementation of the EchoService that uses local storage.
@@ -37,5 +34,14 @@ public class SimpleEchoService implements EchoService {
         } else {
             return Optional.of(new EchoResponse(id, message));
         }
+    }
+
+    @Override
+    public List<EchoResponse> fetch() {
+        List<EchoResponse> result = new ArrayList<>();
+        cache.forEach((id, message) -> {
+            result.add(new EchoResponse(id, message));
+        });
+        return result;
     }
 }

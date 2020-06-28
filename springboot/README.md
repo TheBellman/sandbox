@@ -53,6 +53,7 @@ If the application is running (see below), then you can use `curl` for example t
  - `curl localhost:8080/api/version`
  - `curl --data '{"message":"foo"}' --header "Content-Type: application/json" localhost:8080/api/echo`
  - `curl localhost:8080/api/echo/cdb1477f-a1f0-4a1c-92ec-e28480417b7a` (where the UUID is the result of a previous post)
+ - `curl localhost:8080/api/echo` will return any previously posted messages
 
 Because of the (somewhat artificial) way in which I've set up the Spring Profiles in order to show how they wire
 to the Maven build, if you want to execute tests that include writing and retrieving messages to the database, you need
@@ -155,12 +156,6 @@ Finally, the SQL files in the `resources` folders are used to set up the physica
 The `web` classes provide the API via the `@RestController` markup. This is all quite straight forward, although note
 that for the more complex endpoint, the business logic is broken out of this layer and into a separate (testable) 
 business layer in the `service` package.
-
-**YOU ARE HERE**
-
-ToDo:
-   - fetch-all
-   - need to cap incoming message string to prevent overflows
 
 ## License
 Copyright 2020 Little Dog Digital
