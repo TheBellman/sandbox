@@ -5,8 +5,10 @@ import net.parttimepolymath.sandbox.springboot.model.EchoRequest;
 import net.parttimepolymath.sandbox.springboot.model.EchoResponse;
 import net.parttimepolymath.sandbox.springboot.service.EchoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -18,6 +20,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/api")
+@Validated
 public class EchoController {
     private final EchoService service;
 
@@ -25,6 +28,7 @@ public class EchoController {
         this.service = service;
     }
 
+    @Valid
     @RequestMapping(value = "/echo", method = RequestMethod.POST)
     public EchoResponse echo(@RequestBody EchoRequest echoRequest) {
         return service.echo(echoRequest);

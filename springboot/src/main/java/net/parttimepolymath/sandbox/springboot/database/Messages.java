@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 import java.util.UUID;
 
 /**
@@ -28,6 +29,7 @@ public class Messages {
     @Column(name="id", updatable=false, nullable=false)
     private String id;
 
+    @Size(max=1024)
     @Column(name="message", updatable=false, length=1024)
     private String message;
 

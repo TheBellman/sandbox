@@ -2,6 +2,7 @@ package net.parttimepolymath.sandbox.springboot.web;
 
 import net.parttimepolymath.sandbox.springboot.model.EchoRequest;
 import net.parttimepolymath.sandbox.springboot.model.EchoResponse;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -50,6 +51,23 @@ class EchoControllerTest {
         assertNotNull(response.getBody());
         assertNotNull(response.getBody().getId());
         assertEquals("baz", response.getBody().getMessage());
+    }
+
+    /*
+     * This is a minimal example of adding validation somewhere in the handling - the entity class is marked
+     * up to limit the size of the message string, and this should show up mapped to a 500 error.
+     * See https://hellokoding.com/spring-boot-rest-api-validation-tutorial-with-example/
+     */
+    @Test
+    void testBigEcho() {
+        HttpServerErrorException exception = assertThrows(HttpServerErrorException.class, () -> {
+            String msg = RandomStringUtils.randomAlphabetic(2048);
+            ResponseEntity<EchoResponse> response = restTemplate.postForEntity(baseUrl + "/echo", new EchoRequest(msg),
+                    EchoResponse.class);
+                }
+        );
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, exception.getStatusCode());
     }
 
     @Test
