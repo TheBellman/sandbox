@@ -4,7 +4,7 @@ This project provides a headless Spring Boot application as a single "shaded" JA
 construction, and a variety of other tools:
 
  - Junit 5 for unit tests
- - [Spring Boot 2.3.1](https://spring.io/projects/spring-boot) =
+ - [Spring Boot 2.3.1](https://spring.io/projects/spring-boot)
  - [Lombok](https://projectlombok.org/) for boilerplate code
  - [Jackson](https://github.com/FasterXML/jackson) for JSON serialisation/deserialisation
  - various [Apache Commons](https://commons.apache.org/) utility libraries
@@ -36,7 +36,7 @@ after a few seconds you should see similar to
 ```
 [INFO] --- maven-jar-plugin:3.2.0:jar (default-jar) @ springboot ---
 [INFO] Building jar: /Users/robert/Projects/Java/sandbox/springboot/target/springboot-1.0-SNAPSHOT.jar
-[INFO] 
+[INFO]
 [INFO] --- spring-boot-maven-plugin:2.3.1.RELEASE:repackage (repackage) @ springboot ---
 [INFO] Replacing main artifact with repackaged archive
 [INFO] ------------------------------------------------------------------------
@@ -95,7 +95,7 @@ There are several different ways to start the application - note injection of `s
  - `mvn spring-boot:run`
 
 ## What you can see
-I'm not a big fan of Spring, although Spring Boot makes me a little happier. I will concede though that now 
+I'm not a big fan of Spring, although Spring Boot makes me a little happier. I will concede though that now
 the thousands of lines of XML configuration are gone in favour of annotations, it's become more testable and readable.
 I will also concede that Spring Boot, in particular, allows removal of a lot of boiler plate code when creating
 applications. The downside is that a lot of dependencies are needed - it still disturbs me that a program that does
@@ -121,14 +121,14 @@ The `pom.xml` is largely as defined by [Spring Initializer](https://start.spring
 It's also got two different profiles defined, which will come into play during bundling for release. By default the
 "development" profile is active for all general testing, and the "release" profile should be used for the release artifact.
 
-Finally, note that the use of resource filtering during the build phase, to ensure that build-time information is 
+Finally, note that the use of resource filtering during the build phase, to ensure that build-time information is
 injected to resources bundled into the resulting JAR.
 
 If you look in `application.properties` you can see that the Spring
 application and profile properties are aligned with the values in the POM, and that we have also injected some build-time
 properties into a configuration bean. Similarly, we inject build time values into `banner.txt`.
 
-Doing this ensures that artifact version and names are defined only during and by the Maven build. 
+Doing this ensures that artifact version and names are defined only during and by the Maven build.
 
 ### Spring Boot Application
 The `App` class is the runnable entry point. Nothing interesting to see here, although note that this is the place where
@@ -137,7 +137,7 @@ the Spring Application and Spring behaviour can be finessed before it's actually
 ### Configuration
 Configuration items and beans are defined in the configuration package (unsurprisingly) and are broadly just simple beans.
 
-Note that `Version` by being defined as a `Configuration` and annotated with `ConfigurationProperties` shows how where
+Note that `Version` by being defined as a `Configuration` and annotated with `ConfigurationProperties` shows how
 we inject values from `application.properties` (and the operating environment, if desired) to a Java object that's managed
 by Spring. The `VersionConsumer` just illustrates that this mapping of the environmental properties to the Java runtime
 context is working.
@@ -154,7 +154,7 @@ Finally, the SQL files in the `resources` folders are used to set up the physica
 
 ### API
 The `web` classes provide the API via the `@RestController` markup. This is all quite straight forward, although note
-that for the more complex endpoint, the business logic is broken out of this layer and into a separate (testable) 
+that for the more complex endpoint, the business logic is broken out of this layer and into a separate (testable)
 business layer in the `service` package.
 
 ## License
