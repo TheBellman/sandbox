@@ -2,21 +2,21 @@ package net.parttimepolymath.sandbox.springboot.service;
 
 import net.parttimepolymath.sandbox.springboot.model.EchoRequest;
 import net.parttimepolymath.sandbox.springboot.model.EchoResponse;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SimpleEchoServiceTest {
-    private SimpleEchoService instance;
-
-    @BeforeEach
-    void setUp() {
-        instance = new SimpleEchoService();
-    }
+@SpringBootTest
+@ActiveProfiles("release")
+class StoringEchoServiceTest {
+    @Autowired
+    private StoringEchoService instance;
 
     @Test
     void testEcho() {

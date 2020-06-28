@@ -52,6 +52,7 @@ If the application is running (see below), then you can use `curl` for example t
  - `curl localhost:8080/api`
  - `curl localhost:8080/api/version`
  - `curl --data '{"message":"foo"}' --header "Content-Type: application/json" localhost:8080/api/echo`
+ - `curl localhost:8080/api/echo/cdb1477f-a1f0-4a1c-92ec-e28480417b7a` (where the UUID is the result of a previous post)
 
 Because of the (somewhat artificial) way in which I've set up the Spring Profiles in order to show how they wire
 to the Maven build, if you want to execute tests that include writing and retrieving messages to the database, you need
@@ -158,7 +159,6 @@ business layer in the `service` package.
 **YOU ARE HERE**
 
 ToDo:
-   - fetch-by-id
    - fetch-all
    - need to cap incoming message string to prevent overflows
 

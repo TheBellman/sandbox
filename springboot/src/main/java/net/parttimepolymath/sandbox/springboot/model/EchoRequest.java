@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.jcip.annotations.NotThreadSafe;
 
+import java.util.function.Supplier;
+
 /**
  * very simple POJO to represent an incoming request to our service.
  *

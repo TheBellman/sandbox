@@ -9,10 +9,13 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /*
@@ -40,10 +43,61 @@ class EchoControllerTest {
 
     @Test
     void testEcho() {
-        ResponseEntity<EchoResponse> response = restTemplate.postForEntity(baseUrl + "/echo", new EchoRequest("baz"), EchoResponse.class);
+        ResponseEntity<EchoResponse> response = restTemplate.postForEntity(baseUrl + "/echo", new EchoRequest("baz"),
+                EchoResponse.class);
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertNotNull(response.getBody());
         assertNotNull(response.getBody().getId());
         assertEquals("baz", response.getBody().getMessage());
+    }
+
+    @Test
+    void testFetch() {
+        // send a message
+        ResponseEntity<EchoResponse> response = restTemplate.postForEntity(baseUrl + "/echo", new EchoRequest("foo"),
+                EchoResponse.class);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertNotNull(response.getBody().getId());
+        assertEquals("foo", response.getBody().getMessage());
+
+        // and fetch it again with the returned ID
+        ResponseEntity<EchoResponse> message = restTemplate.getForEntity(baseUrl + "/echo/{id}", EchoResponse.class,
+                response.getBody().getId());
+        assertEquals(HttpStatus.OK, message.getStatusCode());
+        assertNotNull(message.getBody());
+        assertEquals("foo", message.getBody().getMessage());
+    }
+
+    /*
+     * this could be made cleaner by building and registering a RestTemplateResponseErrorHandler, but
+     * there's not much point for this demonstration.
+     */
+    @Test
+    void testFetchFail() {
+        HttpClientErrorException exception = assertThrows(HttpClientErrorException.class, () -> {
+                    ResponseEntity<EchoResponse> message = restTemplate.getForEntity(baseUrl + "/echo/{id}",
+                            EchoResponse.class, UUID.randomUUID().toString());
+                }
+
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, exception.getStatusCode());
+    }
+
+    /*
+     * obviously we should be doing something nicer than just letting the internal exception throw back out
+     * as a 5xx error, but this is sufficient at this time
+     */
+    @Test
+    void testFetchBadId() {
+        HttpServerErrorException exception = assertThrows(HttpServerErrorException.class, () -> {
+                    ResponseEntity<EchoResponse> message = restTemplate.getForEntity(baseUrl + "/echo/{id}",
+                            EchoResponse.class, "some kind of fish");
+                }
+
+        );
+
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, exception.getStatusCode());
     }
 }
