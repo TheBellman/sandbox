@@ -1,0 +1,22 @@
+delete from test.messages;
+
+insert into test.messages(id, message) values ('afed0674-b91f-11ea-b3de-0242ac130004', 'message 1');
+insert into test.messages(id, message) values ('afed08c2-b91f-11ea-b3de-0242ac130004', 'message 2');
+insert into test.messages(id, message) values ('afed09d0-b91f-11ea-b3de-0242ac130004', 'message 3');
+insert into test.messages(id, message) values ('afed0aac-b91f-11ea-b3de-0242ac130004', 'message 4');
+insert into test.messages(id, message) values ('afed0c00-b91f-11ea-b3de-0242ac130004', 'message 5');
+insert into test.messages(id, message) values ('afed0ce6-b91f-11ea-b3de-0242ac130004', 'message 6');
+insert into test.messages(id, message) values ('afed1272-b91f-11ea-b3de-0242ac130004', 'message 7');
+insert into test.messages(id, message) values ('afed1376-b91f-11ea-b3de-0242ac130004', 'message 8');
+insert into test.messages(id, message) values ('afed1452-b91f-11ea-b3de-0242ac130004', 'message 9');
+insert into test.messages(id, message) values ('afed151a-b91f-11ea-b3de-0242ac130004', 'message 10');
+insert into test.messages(id, message) values ('afed15ec-b91f-11ea-b3de-0242ac130004', 'message 11');
+insert into test.messages(id, message) values ('afed16b4-b91f-11ea-b3de-0242ac130004', 'message 12');
+insert into test.messages(id, message) values ('afed18a8-b91f-11ea-b3de-0242ac130004', 'message 13');
+insert into test.messages(id, message) values ('afed1984-b91f-11ea-b3de-0242ac130004', 'message 14');
+insert into test.messages(id, message) values ('afed214a-b91f-11ea-b3de-0242ac130004', 'message 15');
+insert into test.messages(id, message) values ('afed2316-b91f-11ea-b3de-0242ac130004', 'message 16');
+insert into test.messages(id, message) values ('afed28ca-b91f-11ea-b3de-0242ac130004', 'message 17');
+insert into test.messages(id, message) values ('afed2b0e-b91f-11ea-b3de-0242ac130004', 'message 18');
+insert into test.messages(id, message) values ('afed2da2-b91f-11ea-b3de-0242ac130004', 'message 19');
+insert into test.messages(id, message) values ('afed2ff0-b91f-11ea-b3de-0242ac130004', 'message 20');

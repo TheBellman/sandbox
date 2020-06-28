@@ -1,6 +1,7 @@
 package net.parttimepolymath.sandbox.springboot.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.jcip.annotations.NotThreadSafe;
@@ -14,6 +15,7 @@ import net.jcip.annotations.NotThreadSafe;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @NotThreadSafe
 public class EchoRequest {
 

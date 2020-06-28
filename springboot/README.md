@@ -136,6 +136,7 @@ context is working.
 
 ToDo:
  - in-memory h2 database
+    - need to cap incoming message string to prevent overflows
  - integration testing with database
  - maven profiles related to spring profiles
 
