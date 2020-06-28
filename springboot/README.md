@@ -53,6 +53,12 @@ If the application is running (see below), then you can use `curl` for example t
  - `curl localhost:8080/api/version`
  - `curl --data '{"message":"foo"}' --header "Content-Type: application/json" localhost:8080/api/echo`
 
+Because of the (somewhat artificial) way in which I've set up the Spring Profiles in order to show how they wire
+to the Maven build, if you want to execute tests that include writing and retrieving messages to the database, you need
+to either build or run the application with the "release" profile:
+
+ - `mvn -Prelease clean spring-boot:run` or
+ - `mvn -Prelease clean package ; java -jar target/springboot-1.0-SNAPSHOT.jar`
 ## Usage
 After building, you should be immediately able to execute the JAR:
 
@@ -105,8 +111,10 @@ The `pom.xml` is largely as defined by [Spring Initializer](https://start.spring
  - `spring-boot-starter-validation` - allows validation of properties
  - `spring-boot-configuration-processor` - exposes `Configuration` definitions to the IDE
  - `spring-boot-starter-web` - allows for REST API
+ - `spring-boot-starter-data-jpa` - adds wiring to a database via JPA/Hibernate
  - `lombok`
  - `jackson-databind` - this gives us `jackson-core` and `jackson-annotations` at the same time.
+ - `h2`
 
 It's also got two different profiles defined, which will come into play during bundling for release. By default the
 "development" profile is active for all general testing, and the "release" profile should be used for the release artifact.
@@ -132,13 +140,27 @@ we inject values from `application.properties` (and the operating environment, i
 by Spring. The `VersionConsumer` just illustrates that this mapping of the environmental properties to the Java runtime
 context is working.
 
+### JPA, Spring and Databases oh my!
+There are a number of pieces to note here. First off, the `database` package contains the wiring between the database
+and Java code, and the `StoringEchoService` shows use of the repository.
+
+`MessagesRepositoryTest` illustrates use of Spring's inbuilt bits for testing JPA, and note the use of specifying
+the `release` profile during a test in `EchoControllerTest`
+
+Finally, the SQL files in the `resources` folders are used to set up the physical database schema, allied closely to the
+`spring.datasource.*`, `spring.h2.*` and `spring.jpa.*` properties.
+
+### API
+The `web` classes provide the API via the `@RestController` markup. This is all quite straight forward, although note
+that for the more complex endpoint, the business logic is broken out of this layer and into a separate (testable) 
+business layer in the `service` package.
+
 **YOU ARE HERE**
 
 ToDo:
- - in-memory h2 database
-    - need to cap incoming message string to prevent overflows
- - integration testing with database
- - maven profiles related to spring profiles
+   - fetch-by-id
+   - fetch-all
+   - need to cap incoming message string to prevent overflows
 
 ## License
 Copyright 2020 Little Dog Digital

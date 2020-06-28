@@ -66,4 +66,11 @@ class EchoResponseTest {
     void toJson() throws JsonProcessingException {
         assertEquals(String.format("{\"id\":\"%s\",\"message\":\"foo\"}", id1.toString()), mapper.writeValueAsString(instanceOne));
     }
+
+    @Test
+    void fromJson() throws JsonProcessingException {
+        EchoResponse result = mapper.readValue(String.format("{\"id\":\"%s\",\"message\":\"foo\"}", id1.toString()), EchoResponse.class);
+        assertNotNull(result);
+        assertEquals(instanceOne, result);
+    }
 }
