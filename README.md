@@ -11,6 +11,8 @@ You can find the following in here:
   - springboot: a Java 12 project that builds a dummy HTTP API, along with tests, to hold various snippets of Spring Boot fragments
 
 
+![Java CI with Maven](https://github.com/TheBellman/sandbox/workflows/Java%20CI%20with%20Maven/badge.svg?branch=master)
+
 ## Test and Build
 
 In real terms you probably want to use the `pom.xml` in each of the sub-projects locally, however it _is_ possible to build
