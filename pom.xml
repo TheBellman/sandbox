@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <groupId>net.parttimepolymath.sandbox</groupId>
+    <artifactId>sandbox</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>sandbox</name>
+    <description>Collection of Java, reorganised into a cohesive whole with tests.</description>
+    <url>https://github.com/TheBellman/sandbox</url>
+
+    <scm>
+        <url>scm:git:git@github.com:TheBellman/sandbox.git</url>
+        <connection>scm:git:git@github.com:TheBellman/sandbox.git</connection>
+        <developerConnection>scm:git:git@github.com:TheBellman/sandbox.git</developerConnection>
+    </scm>
+    <modules>
+      <module>cli-8</module>
+      <module>springboot</module>
+    </modules>
+</project>
