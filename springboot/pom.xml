@@ -19,7 +19,7 @@
 
     <properties>
         <java.version>12</java.version>
-        <jackson.version>2.11.1</jackson.version>
+        <jackson.version>2.13.4.1</jackson.version>
         <h2.version>2.1.210</h2.version>
         <dev.build.timestamp>${maven.build.timestamp}</dev.build.timestamp>
     </properties>
