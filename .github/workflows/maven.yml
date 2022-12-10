@@ -29,9 +29,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up JDK 12
+    - name: Set up JDK 17
       uses: actions/setup-java@v1
       with:
-        java-version: 12.0
+        java-version: 17.0.5
     - name: Build with Maven
       run: cd springboot && mvn -B package --file pom.xml
