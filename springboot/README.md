@@ -14,7 +14,7 @@ construction, and a variety of other tools:
 In particular, it forms a sandbox and collection of snippets of code and accompanying tests for Spring Boot.
 
 This collection of snippets has been formed by pieces of useful code generated over the past few years,
-bought up to date for Java 12. You can expect that it will grow over time as I bring more old code into it.
+bought up to date for Java 17. You can expect that it will grow over time as I bring more old code into it.
 
 ## Prerequisites
 This project assumes that:
@@ -22,7 +22,7 @@ This project assumes that:
   - you have Maven 3.6.3 or later available
   - you have git available
   - you are connected to the Internet and can pull dependencies via maven and the project via git
-  - you are executing with Java 12.0.2 or later.
+  - you are executing with Java 17.0.5 or later.
 
 ## Building and Testing
 To build and test the executable JAR:

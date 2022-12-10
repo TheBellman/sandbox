@@ -19,6 +19,7 @@
         <connection>scm:git:git@github.com:TheBellman/sandbox.git</connection>
         <developerConnection>scm:git:git@github.com:TheBellman/sandbox.git</developerConnection>
     </scm>
+
     <modules>
       <module>cli-8</module>
       <module>springboot</module>
