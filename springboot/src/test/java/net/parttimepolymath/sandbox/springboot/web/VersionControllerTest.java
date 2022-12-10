@@ -1,6 +1,5 @@
 package net.parttimepolymath.sandbox.springboot.web;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import net.parttimepolymath.sandbox.springboot.configuration.Version;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -23,9 +22,6 @@ class VersionControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
-
     @MockBean
     private Version version;
 
@@ -39,7 +35,7 @@ class VersionControllerTest {
 
     @Test
     void testVersion() throws Exception {
-        for (String path : Arrays.asList("/api", "/api/", "/api/version", "/api/version/")) {
+        for (String path : Arrays.asList("/api", "/api/version")) {
             mockMvc.perform(get(path))
                     .andExpect(status().isOk())
                     .andExpect(jsonPath("$.version", is("1.0")))

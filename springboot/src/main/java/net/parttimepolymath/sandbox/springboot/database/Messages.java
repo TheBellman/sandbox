@@ -1,15 +1,18 @@
 package net.parttimepolymath.sandbox.springboot.database;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import net.parttimepolymath.sandbox.springboot.model.EchoRequest;
 import net.parttimepolymath.sandbox.springboot.model.EchoResponse;
+import org.hibernate.Hibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.validation.constraints.Size;
+import java.util.Objects;
 import java.util.UUID;
+
 
 /**
  * This entity bean maps onto the test.messages table in the database.

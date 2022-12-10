@@ -7,37 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-/*
- * Note that https://reflectoring.io/spring-boot-data-jpa-test/ has good materials on testing against JPA
- */
-
 @DataJpaTest
 public class MessagesRepositoryTest {
-    @Autowired
-    private DataSource dataSource;
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
-
-    @Autowired
-    private EntityManager entityManager;
 
     @Autowired
     private MessagesRepository messagesRepository;
 
     @Test
     void injectedComponentsAreNotNull(){
-        assertNotNull(dataSource);
         assertNotNull(jdbcTemplate);
-        assertNotNull(entityManager);
         assertNotNull(messagesRepository);
     }
 

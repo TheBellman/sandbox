@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 /**
  * instance of the echo service that persists messages in the database.
  *
- * @since 2020-06-27
  * @author Robert Hook
+ * @since 2020-06-27
  */
 @Component
 @Profile("release")
@@ -53,7 +53,8 @@ public class StoringEchoService implements EchoService {
 
     @Override
     public List<EchoResponse> fetch() {
-        return repository.findAll().stream().map(msg -> new EchoResponse(msg.getId(), msg.getMessage())).collect(Collectors.toList());
+        return repository.findAll().stream().map(
+                msg -> new EchoResponse(msg.getId(), msg.getMessage())).collect(Collectors.toList()
+        );
     }
-
 }
